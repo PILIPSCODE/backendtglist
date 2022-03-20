@@ -1,0 +1,34 @@
+POST http://localhost:3001/api/dataklean/login
+Content-Type: application/json
+
+
+{
+    "email":"kucing@gmail.com",
+    "password":"Kucing123."
+    
+}
+###
+
+GET http://localhost:3001/api/dataklean/verifey
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMwYTU3NzUxZmQ4NDA3YzVkNDAyMjciLCJpYXQiOjE2NDczNTUyOTcsImV4cCI6MTY0Nzk2MDA5N30.7pLCa9AeoHDY13reVhjp92BAGYK8WtTx1XXuHnlt2Ks
+###
+
+GET http://localhost:3001/api/dataklean/profile
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxNzE3YjNiNDYzMzkzZmIwNzJjYmIiLCJpYXQiOjE2NDc0MTEwNzAsImV4cCI6MTY0ODAxNTg3MH0.SOHtqzG1CYBnfnoO3ozT4vgLA3_4pvfmRoGJ9CbVRaY
+###
+
+DELETE  http://localhost:3001/api/dataklean/profile
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMwYTU3NzUxZmQ4NDA3YzVkNDAyMjciLCJpYXQiOjE2NDczNTUyOTcsImV4cCI6MTY0Nzk2MDA5N30.7pLCa9AeoHDY13reVhjp92BAGYK8WtTx1XXuHnlt2Ks
+###
+POST  http://localhost:3001/api/dataklean/tokenisValid
+Content-Type: application/json
+
+
+{
+    "email":"kucing@gmail.com",
+    "password":"Kucing123."
+    
+}
+###
+
+GET http://localhost:3001/api/dataklean
