@@ -26,13 +26,15 @@ const io = new Server(server,{
     },
 })
 
-
+let userOnline = 1;
 // connection
 io.on("connection", (socket) => {
     console.log("user connected to socket" + socket.id);
 
 
-   socket.on("join",(data) => {
+    userOnline++;
+    io.emit("userOnline",userOnline)
+    socket.on("join",(data) => {
        socket.join(data)
        console.log("user join roomGlobal" + socket.id)
    })
@@ -43,6 +45,8 @@ io.on("connection", (socket) => {
 
 // disconnect
     socket.on("disconnect", () => {
+        userOnline--;
+       io.emit("userOnline",userOnline)
         console.log("user disconnect "+ socket.id);
     });
     })
