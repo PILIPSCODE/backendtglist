@@ -13,6 +13,5 @@ module.exports = () => {
         console.log("cannot Connect to Mongodb")
     }
 }
-// mongodb+srv://Pilips529:Pilips529@cluster0.lqfqg.mongodb.net/pilips?retryWrites=true&w=majority
-// mongodb://localhost:27017/pilips
+
 
