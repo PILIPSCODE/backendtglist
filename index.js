@@ -10,6 +10,8 @@ const cors =require('cors')
 const userRoutes = require("./route/sign");
 const authRoutes = require("./route/login");
 const port = process.env.PORT || 3001;
+const path = require('path');
+const { dirname } = require('path');
 app.use(express.json());
 app.use(cors());
 
@@ -21,10 +23,13 @@ app.use('/api/dataklean' , router)
 
 const io = new Server(server,{
     cors:{
-        origin:"https://tugaslist.netlify.app/",
+        origin:"http://localhost:3000",
         methods:["GET","POST"]
     },
 })
+
+
+
 
 let userOnline = 1;
 // connection
@@ -33,7 +38,7 @@ io.on("connection", (socket) => {
 
 
     userOnline++;
-    io.emit("userOnline",userOnline)
+    socket.emit("userOnline",userOnline)
     socket.on("join",(data) => {
        socket.join(data)
        console.log("user join roomGlobal" + socket.id)
@@ -46,13 +51,22 @@ io.on("connection", (socket) => {
 // disconnect
     socket.on("disconnect", () => {
         userOnline--;
-       io.emit("userOnline",userOnline)
+       socket.emit("userOnline",userOnline)
         console.log("user disconnect "+ socket.id);
     });
     })
 
+    const __dirname1=path.resolve();
 
+    if(process.env.NODE_ENV === "production"){
 
+        app.use(express.static(path.join(__dirname1,"../frontend/build")))
+        app.get('*',(req,res) => {res.sendFile(path.resolve(__dirname1, "../frontend/build/index.html"))})
+    } else{
+        app.get("/",(req,res) =>{
+            res.send("api runnging succesfully")
+        })
+    }
 
 server.listen(port,() => {
     console.log(`server running in ${port} `)
